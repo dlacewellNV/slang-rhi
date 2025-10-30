@@ -1497,6 +1497,11 @@ struct ClusterAccelBuildDesc
 
     struct ImplicitDesc
     {
+        // Required output and temporary buffers for implicit builds
+        DeviceAddress outputBuffer = 0;
+        Size          outputBufferSizeInBytes = 0;
+        DeviceAddress tempBuffer = 0;
+        Size          tempBufferSizeInBytes = 0;
         DeviceAddress outputHandlesBuffer = 0;     // 0 -> use front of result buffer
         uint32_t      outputHandlesStrideInBytes = 0; // 0 -> 8
         DeviceAddress outputSizesBuffer = 0;
@@ -1504,6 +1509,9 @@ struct ClusterAccelBuildDesc
     };
     struct ExplicitDesc
     {
+        // Required temporary buffer for explicit builds
+        DeviceAddress tempBuffer = 0;
+        Size          tempBufferSizeInBytes = 0;
         DeviceAddress destAddressesBuffer = 0;        // required
         uint32_t      destAddressesStrideInBytes = 0;  // 0 -> 8
         DeviceAddress outputHandlesBuffer = 0;         // 0 -> alias destAddresses
@@ -1513,6 +1521,9 @@ struct ClusterAccelBuildDesc
     };
     struct GetSizesDesc
     {
+        // Required temporary buffer for size queries
+        DeviceAddress tempBuffer = 0;
+        Size          tempBufferSizeInBytes = 0;
         DeviceAddress outputSizesBuffer = 0;           // required
         uint32_t      outputSizesStrideInBytes = 0;    // 0 -> 4
     };
